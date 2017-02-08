@@ -21,12 +21,15 @@ L.CanvasRenderer = {
 
         return p._subtract(this.pixelOffset)._round();
     },
+    getStyle : function(feature) {
+        return this.style[this.zoom][feature.properties.typeLabel];
+    },
     point : function(ctx, feature) {
         var point = this.coord2point(feature.geometry.coordinates);
 
         ctx.save();
         ctx.beginPath();
-        ctx.arc(point.x, point.y, this.style.width * 0.5, 0, Math.PI * 2);
+        ctx.arc(point.x, point.y, this.getStyle(feature).weight * 0.5, 0, Math.PI * 2);
         ctx.closePath();
         ctx.fill();
         ctx.restore();
@@ -36,8 +39,8 @@ L.CanvasRenderer = {
             firstHandled = false;
 
         ctx.save();
-        ctx.strokeStyle = this.style.color;
-        ctx.lineWidth = this.style.width;
+        ctx.strokeStyle = this.getStyle(feature).color;
+        ctx.lineWidth = this.getStyle(feature).weight;
         ctx.beginPath();
 
 
@@ -62,8 +65,8 @@ L.CanvasRenderer = {
 
         ctx.save();
         ctx.globalAlpha = 0.5;
-        ctx.fillStyle = this.style.color;
-        ctx.lineWidth = this.style.width;
+        ctx.fillStyle = this.getStyle(feature).color;
+        ctx.lineWidth = this.getStyle(feature).weight;
         ctx.beginPath();
 
 
