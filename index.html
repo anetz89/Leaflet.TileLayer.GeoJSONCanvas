@@ -15,12 +15,17 @@
         width: 100%;
         height: 100%;
     }
+    #osmToggle {
+        position: absolute;
+        bottom: 0px;
+        z-index: 1000;
+    }
     </style>
 </head>
 
 <body>
     <div id="map"></div>
-    
+    <button id="osmToggle" onClick="toggleOSM()">toggle OSM</button>
     <script src="geobound.js"></script>
     <script src="tile2bound.js"></script>
     <script src="renderer.js"></script>

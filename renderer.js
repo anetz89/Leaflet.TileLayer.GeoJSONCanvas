@@ -22,7 +22,7 @@ L.CanvasRenderer = {
         return p._subtract(this.pixelOffset)._round();
     },
     getStyle : function(feature) {
-        return this.style[this.zoom][feature.properties.typeLabel];
+        return this.style[this.zoom][feature.properties.typeLabel] || {};
     },
     point : function(ctx, feature) {
         var point = this.coord2point(feature.geometry.coordinates);
